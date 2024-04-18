@@ -1,0 +1,92 @@
+﻿<Page x:Class="RailwayTicketsSystem.Admin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RailwayTicketsSystem"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1000"
+      Title="Admin" Background="White" Loaded="Page_Loaded">
+    <Page.Resources>
+        <local:RailwayTicketsDataSet x:Key="railwayTicketsDataSet"/>
+        <CollectionViewSource x:Key="ticketsViewSource" Source="{Binding Tickets, Source={StaticResource railwayTicketsDataSet}}"/>
+    </Page.Resources>
+    <StackPanel>
+        <Menu>
+            <MenuItem x:Name="AddBtn" Header="Добавить новый маршрут" Click="AddBtn_Click"/>
+            <MenuItem x:Name="SaveBtn" Header="Сохранить" Click="SaveBtn_Click"/>
+        </Menu>
+    <Grid DataContext="{StaticResource ticketsViewSource}">
+        <DataGrid x:Name="ticketsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="Auto" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Width="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Column" Binding="{Binding ID}" Header="№" IsReadOnly="True" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="tripStartColumn" Binding="{Binding TripStart}" Header="Trip Start" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="tripFinishColumn" Binding="{Binding TripFinish}" Header="Trip Finish" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="startTimeColumn" Header="Start Time" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePickerTextBox Text="{Binding StartTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="finishTimeColumn" Header="Finish Time" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                                <DatePickerTextBox Text="{Binding FinishTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="compartmantTicketsCountColumn" Binding="{Binding CompartmantTicketsCount}" Header="Compartmant Tickets Count" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="compartmentPriceColumn" Binding="{Binding CompartmentPrice}" Header="Compartment Price" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="reservedSeatTicketsCountColumn" Binding="{Binding ReservedSeatTicketsCount}" Header="Reserved Seat Tickets Count" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="reservedSeatPriceColumn" Binding="{Binding ReservedSeatPrice}" Header="Reserved Seat Price" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ticketKodColumn" Binding="{Binding TicketKod}" Header="Ticket Kod" Width="SizeToHeader"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="DeleteBtn" Content="Удалить" Click="DeleteBtn_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+        <Grid x:Name="grid1"  HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Trip Start:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="tripStartTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding TripStart, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Trip Finish:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="tripFinishTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding TripFinish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Start Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <DatePickerTextBox x:Name="startTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <Label Content="Finish Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <DatePickerTextBox x:Name="finishTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4"  VerticalAlignment="Center"/>
+            <Label Content="Compartmant Tickets Count:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="compartmantTicketsCountTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding CompartmantTicketsCount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Compartment Price:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="compartmentPriceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding CompartmentPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Reserved Seat Tickets Count:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="reservedSeatTicketsCountTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding ReservedSeatTicketsCount, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Reserved Seat Price:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBox x:Name="reservedSeatPriceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding ReservedSeatPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Ticket Kod:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+            <TextBox x:Name="ticketKodTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding TicketKod, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Button x:Name="SaveNewBtn" Content="Сохранить" Grid.Row="10" Grid.ColumnSpan="2" Click="SaveNewBtn_Click"/>
+        </Grid>
+    </StackPanel>
+</Page>

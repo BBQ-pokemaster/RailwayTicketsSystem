@@ -1,0 +1,44 @@
+﻿<Window x:Class="RailwayTicketsSystem.Buy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RailwayTicketsSystem"
+        mc:Ignorable="d"
+        Title="Buy" Height="215.909" Width="269.318" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Pasport:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="pasportTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2"  VerticalAlignment="Center" Width="120"/>
+            <Label Content="Количество билетов:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox TextChanged="countTextBox_TextChanged" x:Name="countTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Van Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <ComboBox SelectionChanged="Category_SelectionChanged" x:Name="Category" Grid.Column="1" Grid.Row="7">
+                <ComboBoxItem Content="Купе"/>
+                <ComboBoxItem Content="Плацкарт"/>
+            </ComboBox>
+            <Label Content="Price:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBlock x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120"/>
+            <Button x:Name="ApplyBtn" Content="Оформить" Click="ApplyBtn_Click" Grid.Row="10" Grid.ColumnSpan="2"/>
+        </Grid>
+
+    </Grid>
+</Window>
